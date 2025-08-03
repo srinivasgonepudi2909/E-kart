@@ -51,3 +51,45 @@
   font-weight: 600;
   color: #333;
 }
+/* Product Grid */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+/* Individual Product Card */
+.product-card {
+  width: 220px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Product Image */
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+/* Product Title */
+.product-card h4 {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Pricing Text */
+.product-card p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
