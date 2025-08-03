@@ -6,7 +6,7 @@ export default function Header() {
 
   return (
     <div className="header">
-      <h2 className="logo">Flipkart</h2>
+      <h2 className="logo">E-Kart</h2>
       <input type="text" className="search-bar" placeholder="Search for Products, Brands and More" />
       <div className="nav-buttons">
         {isLoggedIn ? (
