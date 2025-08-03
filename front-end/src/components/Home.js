@@ -1,68 +1,86 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Home.css";
 
 export default function Home() {
-  const categories = [
-    "Top Offers", "Mobiles", "TVs", "Electronics"
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const sections = [
+    {
+      category: "Mobiles",
+      title: "Best Deals on Smartphones",
+      products: [
+        { id: 1, name: "iPhone 16 Pro", price: "₹1,29,000", image: "/images/mobiles/iphone1.jpg" },
+        { id: 2, name: "iPhone 16", price: "₹1,19,000", image: "/images/mobiles/iphone2.jpg" },
+        { id: 3, name: "Samsung S24 Ultra", price: "₹1,34,000", image: "/images/mobiles/samsung.webp" },
+        { id: 4, name: "Samsung S23", price: "₹65,000", image: "/images/mobiles/samsung-s23.webp" },
+        { id: 5, name: "OnePlus 13", price: "₹58,000", image: "/images/mobiles/oneplus-13-white.png" },
+        { id: 6, name: "OnePlus Nord 4", price: "₹39,000", image: "/images/mobiles/OnePlus-Nord-4-5G-1-1.webp" },
+        { id: 7, name: "OnePlus Nord 4 Green", price: "₹40,000", image: "/images/mobiles/oneplus-nord-4-oasis-green-01.jpg" },
+        { id: 8, name: "POCO X4 Pro", price: "₹23,000", image: "/images/mobiles/poco-x4-pro.webp" },
+        { id: 9, name: "Oppo Reno", price: "₹27,000", image: "/images/mobiles/reno-opppo.jpg" },
+        { id: 10, name: "Vivo V30", price: "₹32,000", image: "/images/mobiles/vivo.webp" }
+      ]
+    },
+    {
+      category: "TVs",
+      title: "Top Deals on Smart TVs",
+      products: [
+        { id: 11, name: "LG 55 inch", price: "₹42,000", image: "/images/tvs/Lg.jpg" },
+        { id: 12, name: "Redmi 4K", price: "₹37,000", image: "/images/tvs/redmi-4k-55-inches.webp" },
+        { id: 13, name: "Samsung Crystal", price: "₹49,000", image: "/images/tvs/samsung-55-inches-crystal.jpg" },
+        { id: 14, name: "Sony Bravia 55", price: "₹55,000", image: "/images/tvs/Sony-Premium Bravia-55 inch.webp" },
+        { id: 15, name: "TCL 4K", price: "₹30,000", image: "/images/tvs/TCL-55-4k.webp" }
+      ]
+    },
+    {
+      category: "Electronics",
+      title: "Electronics Mega Sale",
+      products: [
+        { id: 16, name: "LG Washing Machine", price: "₹18,000", image: "/images/electronics/Washing-machine-LG.jpg" },
+        { id: 17, name: "LG AC", price: "₹32,000", image: "/images/electronics/Lg-AC.webp" },
+        { id: 18, name: "Samsung Fridge", price: "₹22,000", image: "/images/electronics/samsung-fridge.webp" },
+        { id: 19, name: "Sony ULT Wear Headphones", price: "₹12,000", image: "/images/electronics/Sony-ULT_WEAR.webp" },
+        { id: 20, name: "Exide Inverter Battery", price: "₹9,000", image: "/images/electronics/Exide-Inverter-battery.webp" }
+      ]
+    }
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState("Mobiles");
-
-  const mobiles = [
-    { id: 1, name: "iPhone 16 Pro", price: "₹1,29,000", image: "/images/mobiles/iphone1.jpg" },
-    { id: 2, name: "iPhone 16", price: "₹1,19,000", image: "/images/mobiles/iphone2.jpg" },
-    { id: 3, name: "Samsung S24 Ultra", price: "₹1,34,000", image: "/images/mobiles/samsung.webp" },
-    { id: 4, name: "Samsung S23", price: "₹65,000", image: "/images/mobiles/samsung-s23.webp" },
-    { id: 5, name: "OnePlus 13", price: "₹58,000", image: "/images/mobiles/oneplus-13-white.png" },
-    { id: 6, name: "OnePlus Nord 4", price: "₹39,000", image: "/images/mobiles/OnePlus-Nord-4-5G-1-1.webp" },
-    { id: 7, name: "OnePlus Nord 4 Green", price: "₹40,000", image: "/images/mobiles/oneplus-nord-4-oasis-green-01.jpg" },
-    { id: 8, name: "POCO X4 Pro", price: "₹23,000", image: "/images/mobiles/poco-x4-pro.webp" },
-    { id: 9, name: "Oppo Reno", price: "₹27,000", image: "/images/mobiles/reno-opppo.jpg" },
-    { id: 10, name: "Vivo V30", price: "₹32,000", image: "/images/mobiles/vivo.webp" }
-  ];
-
-  const tvs = [
-    { id: 1, name: "LG 55 inch", price: "₹47,000", image: "/images/tvs/Lg.jpg" },
-    { id: 2, name: "Redmi 4K 55\"", price: "₹39,000", image: "/images/tvs/redmi-4k-55-inches.webp" },
-    { id: 3, name: "Samsung Crystal 55", price: "₹52,000", image: "/images/tvs/samsung-55-inches-crystal.jpg" },
-    { id: 4, name: "Sony Bravia 55", price: "₹70,000", image: "/images/tvs/Sony-Premium-Bravia-55-inch.webp" },
-    { id: 5, name: "TCL 4K 55", price: "₹33,000", image: "/images/tvs/TCL-55-4k.webp" },
-  ];
-
-  const renderProducts = () => {
-    if (selectedCategory === "Mobiles") return mobiles;
-    if (selectedCategory === "TVs") return tvs;
-    return []; // Add more later
-  };
+  const categories = ["All", "Mobiles", "TVs", "Electronics"];
 
   return (
     <div className="home">
       <div className="category-bar">
         {categories.map(cat => (
-          <div
+          <button
             key={cat}
-            className={`category ${selectedCategory === cat ? "active" : ""}`}
             onClick={() => setSelectedCategory(cat)}
+            className={selectedCategory === cat ? "active" : ""}
           >
             {cat}
-          </div>
+          </button>
         ))}
       </div>
 
-      <h3>Best Deals on {selectedCategory}</h3>
-      <div className="product-grid">
-        {renderProducts().map(prod => (
-          <div className="product-card" key={prod.id}>
-            <img src={prod.image} alt={prod.name} />
-            <h4>{prod.name}</h4>
-            <p>{prod.price}</p>
-            <Link to={`/buy/${prod.id}`}>
-              <button>Buy</button>
-            </Link>
+      {sections
+        .filter(sec => selectedCategory === "All" || sec.category === selectedCategory)
+        .map((section, index) => (
+          <div key={index} className="section">
+            <h3>{section.title}</h3>
+            <div className="product-grid">
+              {section.products.map(prod => (
+                <div className="product-card" key={prod.id}>
+                  <img src={prod.image} alt={prod.name} />
+                  <h4>{prod.name}</h4>
+                  <p>{prod.price}</p>
+                  <Link to={`/buy/${prod.id}`}>
+                    <button>Buy</button>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
-      </div>
     </div>
   );
 }
