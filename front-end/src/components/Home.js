@@ -63,29 +63,36 @@ export default function Home() {
     }
   ];
 
-  const categories = ["All", "Top Offers", "Mobiles", "TVs", "Electronics"];
-
   return (
     <div className="home">
-      <div className="category-bar">
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={selectedCategory === cat ? "active" : ""}
+      {/* Category Icon Bar */}
+      <div className="icon-bar">
+        {[
+          { label: "All", icon: "/images/icons/E-kart-ALL.jpg" },
+          { label: "Top Offers", icon: "/images/icons/best-offers.webp" },
+          { label: "Mobiles", icon: "/images/icons/smart-phone-cartoon.webp" },
+          { label: "TVs", icon: "/images/icons/tvs.avif" },
+          { label: "Electronics", icon: "/images/icons/electronics.webp" }
+        ].map((cat) => (
+          <div
+            key={cat.label}
+            className={`icon-button ${selectedCategory === cat.label ? "active" : ""}`}
+            onClick={() => setSelectedCategory(cat.label)}
           >
-            {cat}
-          </button>
+            <img src={cat.icon} alt={cat.label} />
+            <p>{cat.label}</p>
+          </div>
         ))}
       </div>
 
+      {/* Product Sections */}
       {sections
-        .filter(sec => selectedCategory === "All" || sec.category === selectedCategory)
+        .filter((sec) => selectedCategory === "All" || sec.category === selectedCategory)
         .map((section, index) => (
           <div key={index} className="section">
             <h3>{section.title}</h3>
             <div className="product-grid">
-              {section.products.map(prod => (
+              {section.products.map((prod) => (
                 <div className="product-card" key={prod.id}>
                   <img src={prod.image} alt={prod.name} />
                   <h4>{prod.name}</h4>
