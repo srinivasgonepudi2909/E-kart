@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #2874f0;
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.search-bar {
+  width: 50%;
+  padding: 8px;
+  border-radius: 2px;
+  border: none;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: white;
+  color: #2874f0;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
