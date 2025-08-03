@@ -6,18 +6,35 @@ export default function Header() {
 
   return (
     <div className="header">
-      <h2 className="logo">E-Kart</h2>
-      <input type="text" className="search-bar" placeholder="Search for Products, Brands and More" />
+      <div className="logo">
+        <img src="/images/logo.png" alt="E-Kart Logo" />
+        <span>E-Kart</span>
+      </div>
+
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Search for Products, Brands and More"
+      />
+
       <div className="nav-buttons">
         {isLoggedIn ? (
-          <button onClick={() => {
-            localStorage.removeItem("isLoggedIn");
-            window.location.href = "/";
-          }}>Logout</button>
+          <button
+            onClick={() => {
+              localStorage.removeItem("isLoggedIn");
+              window.location.href = "/";
+            }}
+          >
+            Logout
+          </button>
         ) : (
           <>
-            <Link to="/login"><button>Login</button></Link>
-            <Link to="/signup"><button>Signup</button></Link>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+            <Link to="/signup">
+              <button>Signup</button>
+            </Link>
           </>
         )}
       </div>
